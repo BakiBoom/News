@@ -10,6 +10,7 @@ class CategoryController extends BaseController
 {
     protected $categoryService;
     public function __construct(CategoryService $categoryService) {
+        $this->middleware('auth:api')->except(['index', 'show']);
         $this->categoryService = $categoryService;
     }
     public function index()
@@ -20,6 +21,10 @@ class CategoryController extends BaseController
 
     public function store(Request $request)
     {
+        if (!$this->middleware('auth:api')->passes()) {
+            return $this->sendError('Unauthorized', [], 401);
+        }
+
         $input = $request->all();
         $result = $this->categoryService->store($input);
         if (is_string($result)) {
@@ -39,6 +44,10 @@ class CategoryController extends BaseController
 
     public function update(Request $request, Category $category)
     {
+        if (!$this->middleware('auth:api')->passes()) {
+            return $this->sendError('Unauthorized', [], 401);
+        }
+
         $input = $request->all();
         $result = $this->categoryService->update($input, $category);
         return $this->sendResponse($result->toArray(), 'Category updated successfully.');
@@ -46,6 +55,10 @@ class CategoryController extends BaseController
 
     public function destroy(Category $category)
     {
+        if (!$this->middleware('auth:api')->passes()) {
+            return $this->sendError('Unauthorized', [], 401);
+        }
+        
         $result = $this->categoryService->destroy($category);
         return $this->sendResponse($result->toArray(), 'Category deleted successfully.');
     }

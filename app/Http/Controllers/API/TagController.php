@@ -10,6 +10,7 @@ class TagController extends BaseController
 {
     protected $tagService;
     public function __construct(TagService $tagService) {
+        $this->middleware('auth:api')->except(['index', 'show']);
         $this->tagService = $tagService;
     }
     public function index()
@@ -20,6 +21,10 @@ class TagController extends BaseController
 
     public function store(Request $request)
     {
+        if (!$this->middleware('auth:api')->passes()) {
+            return $this->sendError('Unauthorized', [], 401);
+        }
+
         $input = $request->all();
         $result = $this->tagService->store($input);
         if (is_string($result)) {
@@ -39,6 +44,10 @@ class TagController extends BaseController
 
     public function update(Request $request, Tag $tag)
     {
+        if (!$this->middleware('auth:api')->passes()) {
+            return $this->sendError('Unauthorized', [], 401);
+        }
+        
         $input = $request->all();
         $result = $this->tagService->update($input, $tag);
         return $this->sendResponse($result->toArray(), 'Tag updated successfully.');
@@ -46,6 +55,10 @@ class TagController extends BaseController
 
     public function destroy(Tag $tag)
     {
+        if (!$this->middleware('auth:api')->passes()) {
+            return $this->sendError('Unauthorized', [], 401);
+        }
+
         $result = $this->tagService->destroy($tag);
         return $this->sendResponse($result->toArray(), 'Tag deleted successfully.');
     }

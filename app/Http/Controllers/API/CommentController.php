@@ -10,6 +10,7 @@ class CommentController extends BaseController
 {
     protected $commentService;
     public function __construct(CommentService $commentService) {
+        $this->middleware('auth:api')->except(['index', 'show']);
         $this->commentService = $commentService;
     }
     public function index()
@@ -20,6 +21,10 @@ class CommentController extends BaseController
 
     public function store(Request $request)
     {
+        if (!$this->middleware('auth:api')->passes()) {
+            return $this->sendError('Unauthorized', [], 401);
+        }
+        
         $input = $request->all();
         $result = $this->commentService->store($input);
         if (is_string($result)) {
@@ -39,6 +44,10 @@ class CommentController extends BaseController
 
     public function update(Request $request, Comment $comment)
     {
+        if (!$this->middleware('auth:api')->passes()) {
+            return $this->sendError('Unauthorized', [], 401);
+        }
+
         $input = $request->all();
         $result = $this->commentService->update($input, $comment);
         if (is_string($result)) {
@@ -49,6 +58,10 @@ class CommentController extends BaseController
 
     public function destroy(Comment $comment)
     {
+        if (!$this->middleware('auth:api')->passes()) {
+            return $this->sendError('Unauthorized', [], 401);
+        }
+
         $result = $this->commentService->destroy($comment);
         return $this->sendResponse($result->toArray(), 'Comment deleted successfully.');
     }

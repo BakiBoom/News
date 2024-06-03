@@ -41,7 +41,7 @@ class CommentService {
         }
         $model->title = $input['title'];
         $model->description = $input['description'];
-        $model->tagid = $input['postid'];
+        $model->postid = $input['postid'];
         $model->save();
         return $model;
     }

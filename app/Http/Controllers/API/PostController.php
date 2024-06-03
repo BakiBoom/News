@@ -10,6 +10,7 @@ class PostController extends BaseController
 {
     protected $postService;
     public function __construct(PostService $postService) {
+        $this->middleware('auth:api')->except(['index', 'show']);
         $this->postService = $postService;
     }
     public function index()
@@ -20,6 +21,10 @@ class PostController extends BaseController
 
     public function store(Request $request)
     {
+        if (!$this->middleware('auth:api')->passes()) {
+            return $this->sendError('Unauthorized', [], 401);
+        }
+
         $input = $request->all();
         $result = $this->postService->store($input);
         if (is_string($result)) {
@@ -39,6 +44,10 @@ class PostController extends BaseController
 
     public function update(Request $request, Post $post)
     {
+        if (!$this->middleware('auth:api')->passes()) {
+            return $this->sendError('Unauthorized', [], 401);
+        }
+
         $input = $request->all();
         $result = $this->postService->update($input, $post);
         if (is_string($result)) {
@@ -49,6 +58,10 @@ class PostController extends BaseController
 
     public function destroy(Post $post)
     {
+        if (!$this->middleware('auth:api')->passes()) {
+            return $this->sendError('Unauthorized', [], 401);
+        }
+        
         $result = $this->postService->destroy($post);
         return $this->sendResponse($result->toArray(), 'Post deleted successfully.');
     }

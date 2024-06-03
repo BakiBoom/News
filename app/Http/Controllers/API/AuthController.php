@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Config;
 class AuthController extends BaseController
 {
     public function __construct() {
-        $this->middleware('auth:api')->except(['login', 'registration', 'logout']);
+        $this->middleware('auth:api')->except(['login', 'registration']);
     }
 
     public function registration (Request $request) {
