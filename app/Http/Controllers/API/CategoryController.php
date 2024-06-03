@@ -39,6 +39,7 @@ class CategoryController extends BaseController
 
     public function update(Request $request, Category $category)
     {
+        $input = $request->all();
         $result = $this->categoryService->update($input, $category);
         return $this->sendResponse($result->toArray(), 'Category updated successfully.');
     }

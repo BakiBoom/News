@@ -51,7 +51,7 @@ class AttachmentController extends BaseController
 
     public function destroy(Attachment $attachment)
     {
-        $result = $this->attachmentService->destroy();
+        $result = $this->attachmentService->destroy($attachment);
         return $this->sendResponse($result->toArray(), 'Attachment deleted successfully.');
     }
 

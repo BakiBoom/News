@@ -20,25 +20,71 @@ use App\Http\Controllers\API\AuthController;
 |
 */
 
-Route::prefix('auth')->middleware('api')->controller(AuthController::class)->qroup(function () {
+
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
+
+Route::prefix('auth')->middleware('api')->controller(AuthController::class)->group(function () {
     Route::post('login', 'login');
     Route::post('logout', 'logout');
     Route::post('refresh', 'refresh');
     Route::post('registration', 'registration');
 });
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::prefix('tags')->middleware('api')->controller(TagController::class)->group(function(){
+    Route::post('', 'store');
+    Route::put('{tag}', 'update');
+    Route::delete('{tag}', 'destroy');
+});
+Route::prefix('tags')->controller(TagController::class)->group(function(){
+    Route::get('', 'index');
+    Route::get('{id}', 'show');
 });
 
-Route::resource('tags', TagController::class);
+Route::prefix('categories')->middleware('api')->controller(CategoryController::class)->group(function(){
+    Route::post('', 'store');
+    Route::put('{category}', 'update');
+    Route::delete('{category}', 'destroy');
+});
+Route::prefix('categories')->controller(CategoryController::class)->group(function(){
+    Route::get('', 'index');
+    Route::get('{id}', 'show');
+});
 
-Route::resource('categories', CategoryController::class);
+Route::prefix('posts')->middleware('api')->controller(PostController::class)->group(function(){
+    Route::post('', 'store');
+    Route::put('{post}', 'update');
+    Route::delete('{post}', 'destroy');
+});
+Route::prefix('posts')->controller(PostController::class)->group(function(){
+    Route::get('', 'index');
+    Route::get('{id}', 'show');
+});
 
-Route::resource('posts', PostController::class);
+Route::prefix('comments')->middleware('api')->controller(CommentController::class)->group(function(){
+    Route::post('', 'store');
+    Route::put('{comment}', 'update');
+    Route::delete('{comment}', 'destroy');
+});
+Route::prefix('comments')->controller(CommentController::class)->group(function(){
+    Route::get('', 'index');
+    Route::get('{id}', 'show');
+});
 
-Route::resource('comments', CommentController::class);
+Route::prefix('attachments')->middleware('api')->controller(AttachmentController::class)->group(function(){
+    Route::post('', 'store');
+    Route::delete('{attachment}', 'destroy');
+    Route::post('updatebyid/{id}', 'updateById');
+});
+Route::prefix('attachments')->controller(AttachmentController::class)->group(function(){
+    Route::get('', 'index');
+    Route::get('{id}', 'show');
+    Route::get('getbypostid/{postid}', 'getbypostid');
+});
 
-Route::resource('attachments', AttachmentController::class);
-Route::get('/attachments/getbypostid/{postid}', [AttachmentController::class, 'getByPostId']);
-Route::post('/attachments/updatebyid/{id}', [AttachmentController::class, 'updateById']);
+//Route::resource('tags', TagController::class);
+//Route::resource('categories', CategoryController::class);
+//Route::resource('posts', PostController::class);
+//Route::resource('comments', CommentController::class);
+//Route::resource('attachments', AttachmentController::class);

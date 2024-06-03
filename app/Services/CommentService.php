@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Models\Comment;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 
 class CommentService {
 

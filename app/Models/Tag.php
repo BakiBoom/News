@@ -12,9 +12,11 @@ class Tag extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 
+        'id',
         'title',
         'description',
+        'ispublish',
+        'publishdate',
         'created_at',
         'updated_at',
         'deleted_at'

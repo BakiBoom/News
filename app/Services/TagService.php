@@ -3,7 +3,8 @@
 namespace App\Services;
 
 use App\Models\Tag;
-use Validator;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Carbon;
 
 class TagService {
 
@@ -15,12 +16,19 @@ class TagService {
     {
         $validator = Validator::make($input, [
             'title' => 'required',
-            'description' => 'required'
+            'description' => 'required',
+            'publishdate' => 'required',
+            'ispublish' => 'required'
         ]);
         if($validator->fails()){
             return 'Validation Error.'.$validator->errors();
         }
-        return $tag = Tag::create($input);
+        return $tag = Tag::create([
+            'title' => $input['title'],
+            'description' => $input['description'],
+            'publishdate' => $input['publishdate'],
+            'ispublish' => $input['ispublish'],
+        ]);
     }
 
     public function show($id): Tag | string  {
@@ -34,6 +42,7 @@ class TagService {
     public function update($input, Tag $model): Tag | string  {
         $model->title = $input['title'];
         $model->description = $input['description'];
+        $model->ispublish = $input['ispublish'];
         $model->save();
         return $model;
     }

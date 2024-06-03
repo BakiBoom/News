@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('title')->nullable(false);
             $table->text('description')->nullable(false);
+            $table->date('publishdate')->nullable();
+            $table->boolean('isdeleted')->default(false);
+            $table->boolean('ispublish')->default(false);
             $table->timestamp('created_at')->nullable(false);
             $table->timestamp('updated_at')->nullable(false);
             $table->timestamp('deleted_at')->nullable();

@@ -39,6 +39,7 @@ class TagController extends BaseController
 
     public function update(Request $request, Tag $tag)
     {
+        $input = $request->all();
         $result = $this->tagService->update($input, $tag);
         return $this->sendResponse($result->toArray(), 'Tag updated successfully.');
     }

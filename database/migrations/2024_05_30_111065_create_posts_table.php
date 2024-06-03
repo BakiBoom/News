@@ -15,10 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('title')->nullable(false);
             $table->text('description')->nullable(false);
+            $table->date('publishdate')->nullable();
             $table->timestamp('created_at')->nullable(false);
             $table->timestamp('updated_at')->nullable(false);
             $table->timestamp('deleted_at')->nullable();
             $table->boolean('isdeleted')->default(false);
+            $table->boolean('ispublish')->default(false);
             $table->unsignedBigInteger('categoryid')->nullable(false);
             $table->foreign('categoryid')->references('id')->on('categories');
             $table->unsignedBigInteger('tagid')->nullable(false);

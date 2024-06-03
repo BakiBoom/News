@@ -40,7 +40,7 @@ class PostController extends BaseController
     public function update(Request $request, Post $post)
     {
         $input = $request->all();
-        $result = $this->postService->update($input, $comment);
+        $result = $this->postService->update($input, $post);
         if (is_string($result)) {
             return $this->sendError($result);
         }

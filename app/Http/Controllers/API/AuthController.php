@@ -3,17 +3,26 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
 use App\Models\User;
-use App\Models\AuthModel;
-use Validator;
+use Tymon\JWTAuth\Providers\Auth\JWT;
+use Tymon\JWTAuth\Facades\JWTAuth;
+use Illuminate\Support\Facades\Config;
 
 class AuthController extends BaseController
 {
     public function __construct() {
-        $this->middleware('auth:api')->except('login');
+        $this->middleware('auth:api')->except(['login', 'registration', 'logout']);
     }
 
-    public function registartion (Request $request) {
+    public function registration (Request $request) {
         $input = $request->only(['email', 'password', 'name']);
+        $user = User::create([
+            'name' => $input['name'],
+            'email' => $input['email'],
+            'password' => bcrypt($input['password']),
+        ]);
+
+        $token = auth('api')->login($user);
+        return $this->sendResponse($this->respondWithToken($token), 'User registered successfully');
     }
 
     public function login(Request $request) {
@@ -22,19 +31,23 @@ class AuthController extends BaseController
         if(!$token) {
             $this->sendError('Unautorization', [], 401);
         }
-        $this->sendResponse($this->respondWithToken($token), 'Successfully login');
+        return $this->sendResponse($this->respondWithToken($token), 'Successfully login');
     }
 
     public function logout(Request $request) {
         auth('api')->logout();
-        return $this->sendResponse([], 'Successfully login');
+        return $this->sendResponse([], 'Successfully logout');
     }
 
     public function refresh(Request $request) {
-        return $this->respondWithToken(auth('api')->refresh());
+        return $this->sendResponse($this->respondWithToken(auth('api')->refresh()), '');
     }
 
     private function respondWithToken($token) {
-        return new AuthModel($token, 'Bearer', \Config::get('jwt.ttl') * 60);
+        return [
+            'token' => $token,
+            'type' => 'Bearer',
+            'liveTime' => Config::get('jwt.ttl') * 60
+        ];
     }
 }

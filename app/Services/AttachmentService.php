@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Models\Attachment;
 use Illuminate\Support\Facades\Storage;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 
 class AttachmentService {
 

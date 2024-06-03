@@ -3,7 +3,8 @@
 namespace App\Services;
 
 use App\Models\Post;
-use Validator;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Carbon;
 
 class PostService {
 
@@ -17,12 +18,22 @@ class PostService {
             'title' => 'required',
             'description' => 'required',
             'categoryid' => 'required',
-            'tagid' => 'required'
+            'tagid' => 'required',
+            'publishdate' => 'required',
+            'ispublish' => 'required'
+
         ]);
         if($validator->fails()){
             return 'Validation Error.'.$validator->errors();
         }
-        return $post = Post::create($input);
+        return $post = Post::create([
+            'title' => $input['title'],
+            'description' => $input['description'],
+            'categoryid' => $input['categoryid'],
+            'tagid' => $input['tagid'],
+            'publishdate' => $input['publishdate'],
+            'ispublish' => $input['ispublish'],
+        ]);
     }
 
     public function show($id): Post | string  {
@@ -45,6 +56,7 @@ class PostService {
         $model->description = $input['description'];
         $model->categoryid = $input['categoryid'];
         $model->tagid = $input['tagid'];
+        $model->ispublish = $input['ispublish'];
         $model->save();
         return $model;
     }
