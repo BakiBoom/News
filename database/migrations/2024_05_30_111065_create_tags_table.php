@@ -18,6 +18,8 @@ return new class extends Migration
             $table->date('publishdate')->nullable();
             $table->boolean('isdeleted')->default(false);
             $table->boolean('ispublish')->default(false);
+            $table->unsignedBigInteger('categoryid')->nullable(false);
+            $table->foreign('categoryid')->references('id')->on('categories');
             $table->timestamp('created_at')->nullable(false);
             $table->timestamp('updated_at')->nullable(false);
             $table->timestamp('deleted_at')->nullable();

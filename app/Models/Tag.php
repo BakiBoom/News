@@ -16,6 +16,7 @@ class Tag extends Model
         'title',
         'description',
         'ispublish',
+        'isdeleted',
         'publishdate',
         'created_at',
         'updated_at',

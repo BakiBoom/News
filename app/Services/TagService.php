@@ -47,6 +47,23 @@ class TagService {
         return $model;
     }
 
+    public function updateById ($input, $id): Tag | string {
+        $model = Tag::find($id);
+        $model->title = $input['title'];
+        $model->description = $input['description'];
+        $model->ispublish = $input['ispublish'];
+        $model->isdeleted = $input['isdeleted'];
+        $model->save();
+        return $model;
+    }
+
+    public function moveBucket($id): Tag {
+        $model = Tag::find($id);
+        $model->isdeleted = true;
+        $model->save();
+        return $model;
+    }
+
     public function destroy(Tag $model): Tag {
         $model->delete();
         return $model;

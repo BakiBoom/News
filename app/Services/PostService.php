@@ -57,6 +57,34 @@ class PostService {
         $model->categoryid = $input['categoryid'];
         $model->tagid = $input['tagid'];
         $model->ispublish = $input['ispublish'];
+        $model->isdeleted = $input['isdeleted'];
+        $model->save();
+        return $model;
+    }
+
+    public function updateById ($input, $id): Post | string {
+        $validator = Validator::make($input, [
+            'categoryid' => 'integer',
+            'tagid' => 'integer'
+        ]);
+        if($validator->fails()){
+            return 'Validation Error.'.$validator->errors();
+        }
+        $model = Post::find($id);
+        $model->title = $input['title'];
+        $model->description = $input['description'];
+        $model->categoryid = $input['categoryid'];
+        $model->tagid = $input['tagid'];
+        $model->ispublish = $input['ispublish'];
+        $model->isdeleted = $input['isdeleted'];
+        $model->publishdate = $input['publishdate'];
+        $model->save();
+        return $model;
+    }
+
+    public function moveBucket($id): Post {
+        $model = Post::find($id);
+        $model->isdeleted = true;
         $model->save();
         return $model;
     }

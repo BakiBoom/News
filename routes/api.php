@@ -36,6 +36,8 @@ Route::prefix('tags')->middleware('api')->controller(TagController::class)->grou
     Route::post('', 'store');
     Route::put('{tag}', 'update');
     Route::delete('{tag}', 'destroy');
+    Route::post('updatebyid/{id}', 'updateById');
+    Route::post('moveBucket/{id}', 'moveBucket');
 });
 Route::prefix('tags')->controller(TagController::class)->group(function(){
     Route::get('', 'index');
@@ -46,6 +48,8 @@ Route::prefix('categories')->middleware('api')->controller(CategoryController::c
     Route::post('', 'store');
     Route::put('{category}', 'update');
     Route::delete('{category}', 'destroy');
+    Route::post('updatebyid/{id}', 'updateById');
+    Route::post('moveBucket/{id}', 'moveBucket');
 });
 Route::prefix('categories')->controller(CategoryController::class)->group(function(){
     Route::get('', 'index');
@@ -56,6 +60,8 @@ Route::prefix('posts')->middleware('api')->controller(PostController::class)->gr
     Route::post('', 'store');
     Route::put('{post}', 'update');
     Route::delete('{post}', 'destroy');
+    Route::post('updatebyid/{id}', 'updateById');
+    Route::post('moveBucket/{id}', 'moveBucket');
 });
 Route::prefix('posts')->controller(PostController::class)->group(function(){
     Route::get('', 'index');

@@ -43,6 +43,24 @@ class CategoryService {
         $model->title = $input['title'];
         $model->description = $input['description'];
         $model->ispublish = $input['ispublish'];
+        $model->ispublish = $input['isdeleted'];
+        $model->save();
+        return $model;
+    }
+
+    public function updateById ($input, $id): Category | string {
+        $model = Category::find($id);
+        $model->title = $input['title'];
+        $model->description = $input['description'];
+        $model->ispublish = $input['ispublish'];
+        $model->isdeleted = $input['isdeleted'];
+        $model->save();
+        return $model;
+    }
+
+    public function moveBucket($id): Category {
+        $model = Category::find($id);
+        $model->isdeleted = true;
         $model->save();
         return $model;
     }

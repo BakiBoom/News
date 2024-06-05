@@ -56,6 +56,29 @@ class PostController extends BaseController
         return $this->sendResponse($result->toArray(), 'Post updated successfully.');
     }
 
+    public function updateById(Request $request, $id)
+    {
+        if (!$this->middleware('auth:api')->passes()) {
+            return $this->sendError('Unauthorized', [], 401);
+        }
+
+        $input = $request->all();
+        $result = $this->postService->updateById($input, $id);
+        if (is_string($result)) {
+            return $this->sendError($result);
+        }
+        return $this->sendResponse($result->toArray(), 'Post updated successfully.');
+    }
+
+    public function moveBucket($id) {
+        if (!$this->middleware('auth:api')->passes()) {
+            return $this->sendError('Unauthorized', [], 401);
+        }
+
+        $result = $this->postService->moveBucket($id);
+        return $this->sendResponse($result->toArray(), 'Post move bucket successfully.');
+    }
+
     public function destroy(Post $post)
     {
         if (!$this->middleware('auth:api')->passes()) {
