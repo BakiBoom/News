@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список постов</title>
+    <link rel="stylesheet" href="bootstrap-4.6.2-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="body-color">
+    <header class="bg-dark mb-4">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="m-2" style="color: #FFF;">
+                    <h3 class="m-0">Новости</h3>
+                </div>
+                <div>
+                    <ul class="d-flex m-2"  style="color: #FFF;">
+                        <li class="m-2 header-punkt"><a class="btn btn-light">Главная</a></li>
+                        <li class="m-2 header-punkt"><a class="btn btn-light">О нас</a></li>
+                        <li class="m-2 header-punkt">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Категория 1</button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Тег 1.1</a></li>
+                                    <li><a class="dropdown-item" href="#">Тег 1.2</a></li>
+                                    <li><a class="dropdown-item" href="#">Тег 1.3</a></li>
+                                    <li><a class="dropdown-item" href="#">Тег 1.4</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="m-2 header-punkt">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Категория 2</button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Тег 2.1</a></li>
+                                    <li><a class="dropdown-item" href="#">Тег 2.2</a></li>
+                                    <li><a class="dropdown-item" href="#">Тег 2.3</a></li>
+                                    <li><a class="dropdown-item" href="#">Тег 2.4</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="m-2 header-punkt">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Категория 3</button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Тег 3.1</a></li>
+                                    <li><a class="dropdown-item" href="#">Тег 3.2</a></li>
+                                    <li><a class="dropdown-item" href="#">Тег 3.3</a></li>
+                                    <li><a class="dropdown-item" href="#">Тег 3.4</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="mb-4 section-custom">
+        <div class="container">
+            <div class="py-3 d-flex justify-content-between">
+                <div class="w-32">
+                    <div class="m-1">
+                        <label class="mb-1"><strong>Поиск</strong></label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Поиск" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                            <span class="input-group-text" id="basic-addon2">@</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-32 d-flex">
+                    <div class="w-49 m-1">
+                        <label class="mb-1"><strong>Категории</strong></label>
+                        <select class="form-control" style="width: 100% !important;">
+                            <option>Категория 1</option>
+                            <option>Категория 2</option>
+                            <option>Категория 3</option>
+                        </select>
+                    </div>
+                    <div class="w-49 m-1">
+                        <label class="mb-1"><strong>Теги</strong></label>
+                        <select class="form-control" style="width: 100% !important;">
+                            <option>Тег 1</option>
+                            <option>Тег 2</option>
+                            <option>Тег 3</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="w-32 d-flex">
+                    <div class="w-49 m-1">
+                        <label class="mb-1"><strong>От</strong></label>
+                        <input class="form-control" type="date" style="width: 100% !important;" />
+                    </div>
+                    <div class="w-49 m-1">
+                        <label class="mb-1"><strong>До</strong></label>
+                        <input class="form-control" type="date" style="width: 100% !important;" />
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="mb-3 section-custom">
+        <div class="container">
+            <div id="newsList" class="py-3">
+                <div class="row mb-3">
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <div class="d-flex justify-content-end">
+                                    <span><small>10.06.2024</small></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <div class="d-flex justify-content-end">
+                                    <span><small>10.06.2024</small></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <div class="d-flex justify-content-end">
+                                    <span><small>10.06.2024</small></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <div class="d-flex justify-content-end">
+                                    <span><small>10.06.2024</small></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <div class="d-flex justify-content-end">
+                                    <span><small>10.06.2024</small></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <div class="d-flex justify-content-end">
+                                    <span><small>10.06.2024</small></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pb-2">
+                <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <script src="jQuery/jquery-3.7.1.min.js"></script>
+    <script src="bootstrap-4.6.2-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="bootstrap-4.6.2-dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>

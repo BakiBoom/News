@@ -22,10 +22,6 @@ class AttachmentController extends BaseController
 
     public function store(Request $request)
     {
-        if (!$this->middleware('auth:api')->passes()) {
-            return $this->sendError('Unauthorized', [], 401);
-        }
-
         $input = $request->all();
         $file = $request->file('attachmentfile');
         $result = $this->attachmentService->store($input, $file);
@@ -46,10 +42,6 @@ class AttachmentController extends BaseController
 
     public function updateById(Request $request, $id)
     {
-        if (!$this->middleware('auth:api')->passes()) {
-            return $this->sendError('Unauthorized', [], 401);
-        }
-
         $file = $request->file('attachmentfile');
         $result = $this->attachmentService->updateById($file, $id);
         if (is_string($result)) {
@@ -58,18 +50,19 @@ class AttachmentController extends BaseController
         return $this->sendResponse($result->toArray(), 'Attachment updated successfully.');
     }
 
-    public function destroy(Attachment $attachment)
+    public function destroy($id)
     {
-        if (!$this->middleware('auth:api')->passes()) {
-            return $this->sendError('Unauthorized', [], 401);
-        }
-        
-        $result = $this->attachmentService->destroy($attachment);
+        $result = $this->attachmentService->destroy($id);
         return $this->sendResponse($result->toArray(), 'Attachment deleted successfully.');
     }
 
     public function getByPostId ($postId) {
         $result = $this->attachmentService->getByPostId($postId);
         return $this->sendResponse($result->toArray(), 'Attachment deleted successfully.');
+    }
+    
+    public function moveBucket($id){
+        $result = $this->attacmentService->moveBucket($id);
+        return $this->sendResponse($result->toArray(), 'Attachment move bucket successfully.');
     }
 }

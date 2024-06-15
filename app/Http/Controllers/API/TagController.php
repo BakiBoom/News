@@ -21,10 +21,6 @@ class TagController extends BaseController
 
     public function store(Request $request)
     {
-        if (!$this->middleware('auth:api')->passes()) {
-            return $this->sendError('Unauthorized', [], 401);
-        }
-
         $input = $request->all();
         $result = $this->tagService->store($input);
         if (is_string($result)) {
@@ -43,11 +39,7 @@ class TagController extends BaseController
     }
 
     public function update(Request $request, Tag $tag)
-    {
-        if (!$this->middleware('auth:api')->passes()) {
-            return $this->sendError('Unauthorized', [], 401);
-        }
-        
+    { 
         $input = $request->all();
         $result = $this->tagService->update($input, $tag);
         return $this->sendResponse($result->toArray(), 'Tag updated successfully.');
@@ -55,31 +47,30 @@ class TagController extends BaseController
 
     public function updateById(Request $request, $id)
     {
-        if (!$this->middleware('auth:api')->passes()) {
-            return $this->sendError('Unauthorized', [], 401);
-        }
-
         $input = $request->all();
         $result = $this->tagService->updateById($input, $id);
         return $this->sendResponse($result->toArray(), 'Tag updated successfully.');
     }
 
-    public function moveBucket($id) {
-        if (!$this->middleware('auth:api')->passes()) {
-            return $this->sendError('Unauthorized', [], 401);
-        }
+    public function getTagsByCategoryId($categoryid) {
+        $result = $this->tagService->getTagsByCategoryId($categoryid);
+        return $this->sendResponse($result->toArray(), 'Tag successfully.');
+    }
 
+    public function moveBucket($id) {
         $result = $this->tagService->moveBucket($id);
         return $this->sendResponse($result->toArray(), 'Tag move bucket successfully.');
     }
 
-    public function destroy(Tag $tag)
+    public function destroy($id)
     {
-        if (!$this->middleware('auth:api')->passes()) {
-            return $this->sendError('Unauthorized', [], 401);
-        }
-
-        $result = $this->tagService->destroy($tag);
+        $result = $this->tagService->destroy($id);
         return $this->sendResponse($result->toArray(), 'Tag deleted successfully.');
+    }
+
+    public function getFilterValues(Request $request){
+        $input = $request->all();
+        $result = $this->tagService->getFilterValues($request);
+        return $this->sendResponse($result, 'Tag filter successfully.');
     }
 }

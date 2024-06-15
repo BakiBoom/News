@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создание поста</title>
+    <link rel="stylesheet" href="bootstrap-4.6.2-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="body-color">
+    <header class="bg-dark mb-4">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="my-2" style="color: #FFF;">
+                    <h3 class="m-0">Админ панель</h3>
+                </div>
+                <div class="d-flex flex-column align-items-end">
+                    <ul class="d-flex my-2">
+                        <li class="m-2 header-punkt"><a class="btn btn-light">Посты</a></li>
+                        <li class="m-2 header-punkt"><a class="btn btn-light">Категории</a></li>
+                        <li class="my-2 ml-2 mr-1 header-punkt"><a class="btn btn-light">Теги</a></li>
+                        <li class="my-2 ml-2 mr-1 header-punkt"><a class="btn btn-primary">Выход</a></li>
+                    </ul>
+                    <ul class="d-flex mb-2">
+                        <li class="mx-1 header-punkt"><a class="btn btn-sm btn-outline-info">Создать пост</a></li>
+                        <li class="mx-1 header-punkt"><a class="btn btn-sm btn-outline-info">Создать категорию</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="mb-4 section-custom">
+        <div class="container">
+            <div class="py-3">
+                <div class="d-flex justify-content-between">
+                    <div class="p-3 w-65 mr-2 bg-white rounded">
+                        <div class="w-100 border-bottom mb-3">
+                            <h5>Содержимое поста</h5>
+                        </div>
+                        <div class="w-100 d-flex flex-column">
+                            <div class="d-flex flex-column mb-2">
+                                <label class="mb-1"><strong>Заголовок:</strong></label>
+                                <input class="form-control form-control-sm" type="text" placeholder="Введите заголовок" />
+                            </div>
+                            <div class="d-flex flex-column mb-2">
+                                <label class="mb-1"><strong>Краткое содержание поста:</strong></label>
+                                <textarea class="form-control"></textarea>
+                            </div>
+                            <div class="d-flex flex-column mb-2">
+                                <label class="mb-1"><strong>Текст поста:</strong></label>
+                                <textarea class="form-control"></textarea>
+                            </div>
+                            <div class="d-flex flex-column mb-2">
+                                <label class="mb-1"><strong>Краткое заключение:</strong></label>
+                                <textarea class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-3 w-35 bg-white rounded">
+                        <div class="w-100 border-bottom mb-3">
+                            <h5>Настройка поста</h5>
+                        </div>
+                        <div class="w-100 d-flex flex-column">
+                            <div class="d-flex flex-column mb-2" id="categoryIdContainer">
+                                <label class="mb-1"><strong>Категория:</strong></label>
+                                <select class="form-control">
+                                    <option value="0">Категория 1</option>
+                                    <option value="1">Категория 2</option>
+                                    <option value="2">Категория 3</option>
+                                </select>
+                            </div>
+                            <div class="d-flex flex-column mb-2" id="tagIdContainer">
+                                <label class="mb-1"><strong>Тег:</strong></label>
+                                <select class="form-control">
+                                    <option value="0">Тег 1</option>
+                                    <option value="1">Тег 2</option>
+                                    <option value="2">Тег 3</option>
+                                </select>
+                            </div>
+                            <div class="d-flex flex-column mb-2">
+                                <label class="mb-1"><strong>Состояние публикации:</strong></label>
+                                <select class="form-control">
+                                    <option value="true">Опубликовано</option>
+                                    <option value="false">Не опубликовано</option>
+                                </select>
+                            </div>
+                            <div class="d-flex flex-column mb-2">
+                                <label class="mb-1"><strong>Дата публикации:</strong></label>
+                                <input class="form-control" type="date" />
+                            </div>
+                        </div>                    
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center mt-3">
+                    <span class="btn btn-outline-success w-100">Сохранить</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="jQuery/jquery-3.7.1.min.js"></script>
+    <script src="bootstrap-4.6.2-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="bootstrap-4.6.2-dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>

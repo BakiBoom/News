@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\TagFilter;
 use App\Models\Tag;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Carbon;
@@ -28,6 +29,7 @@ class TagService {
             'description' => $input['description'],
             'publishdate' => $input['publishdate'],
             'ispublish' => $input['ispublish'],
+            'categoryid' => $input['categoryid']
         ]);
     }
 
@@ -57,6 +59,11 @@ class TagService {
         return $model;
     }
 
+    public function getTagsByCategoryId($categoryid) {
+        $tags = Tag::where('categoryid', $categoryid)->get();
+        return $tags;
+    }
+
     public function moveBucket($id): Tag {
         $model = Tag::find($id);
         $model->isdeleted = true;
@@ -64,8 +71,17 @@ class TagService {
         return $model;
     }
 
-    public function destroy(Tag $model): Tag {
+    public function destroy($id): Tag {
+        $model = Tag::find($id);
         $model->delete();
         return $model;
+    }
+
+    public function getFilterValues($input){
+        $filter = new TagFilter();
+        $filter->isdeleted = $input['isdeleted'];
+        $filter->created_at = $input['created_at'];
+        $filter->deleted_at = $input['deleted_at'];
+        return $filter;
     }
 }

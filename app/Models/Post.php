@@ -24,4 +24,5 @@ class Post extends Model
         'categoryid',
         'tagid'
     ];
+
 }

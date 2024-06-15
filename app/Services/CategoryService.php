@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\CategoryFilter;
 use App\Models\Category;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Carbon;
@@ -65,8 +66,19 @@ class CategoryService {
         return $model;
     }
 
-    public function destroy(Category $model): Category {
+    public function destroy($id): Category {
+        $model = Category::find($id);
         $model->delete();
         return $model;
+    }
+
+    public function getFilterValues($input)
+    {
+        $filter = new CategoryFilter();
+        $filter->tagsid = $input['tagsid'];
+        $filter->isdeleted = $input['isdeleted'];
+        $filter->created_at = $input['created_at'];
+        $filter->deleted_at = $input['deleted_at'];
+        return $filter;
     }
 }

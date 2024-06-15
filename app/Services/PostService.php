@@ -2,14 +2,20 @@
 
 namespace App\Services;
 
+use App\Models\PostFilter;
 use App\Models\Post;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Carbon;
 
 class PostService {
 
-    public function index() {
-        return $posts = Post::all();
+    public function index(TagFilter $request) {
+        $posts = Post::filter($request);
+        if (isset($posts)){
+            return $posts;
+        } else {
+            return $post = Post::all();
+        }
     }
 
     public function store($input): Post | string
@@ -89,8 +95,20 @@ class PostService {
         return $model;
     }
 
-    public function destroy(Post $model): Post {
+    public function destroy($id): Post {
+        $model = Post::find($id);
         $model->delete();
         return $model;
+    }
+
+    public function getFilterValues($input){
+        $filter = new PostFilter();
+        $filter->title = $input['title'];
+        $filter->categorysid = $input['categorysid'];
+        $filter->tagsid = $input['tagsid'];
+        $filter->isdeleted = $input['isdeleted'];
+        $filter->created_at = $input['created_at'];
+        $filter->deleted_at = $input['deleted_at'];
+        return $filter;
     }
 }

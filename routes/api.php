@@ -35,37 +35,44 @@ Route::prefix('auth')->middleware('api')->controller(AuthController::class)->gro
 Route::prefix('tags')->middleware('api')->controller(TagController::class)->group(function(){
     Route::post('', 'store');
     Route::put('{tag}', 'update');
-    Route::delete('{tag}', 'destroy');
+    Route::delete('{id}', 'destroy');
+    Route::post('filter', 'getFilterValues');
     Route::post('updatebyid/{id}', 'updateById');
     Route::post('moveBucket/{id}', 'moveBucket');
 });
 Route::prefix('tags')->controller(TagController::class)->group(function(){
     Route::get('', 'index');
     Route::get('{id}', 'show');
+    Route::post('filter', 'getFilterValues');
+    Route::post('{categoryid}', 'getTagsByCategoryId');
 });
 
 Route::prefix('categories')->middleware('api')->controller(CategoryController::class)->group(function(){
     Route::post('', 'store');
     Route::put('{category}', 'update');
-    Route::delete('{category}', 'destroy');
+    Route::delete('{id}', 'destroy');
+    Route::post('filter', 'getFilterValues');
     Route::post('updatebyid/{id}', 'updateById');
     Route::post('moveBucket/{id}', 'moveBucket');
 });
 Route::prefix('categories')->controller(CategoryController::class)->group(function(){
     Route::get('', 'index');
     Route::get('{id}', 'show');
+    Route::post('filter', 'getFilterValues');
 });
 
 Route::prefix('posts')->middleware('api')->controller(PostController::class)->group(function(){
     Route::post('', 'store');
     Route::put('{post}', 'update');
-    Route::delete('{post}', 'destroy');
+    Route::delete('{id}', 'destroy');
+    Route::post('filter', 'getFilterValues');
     Route::post('updatebyid/{id}', 'updateById');
     Route::post('moveBucket/{id}', 'moveBucket');
 });
 Route::prefix('posts')->controller(PostController::class)->group(function(){
     Route::get('', 'index');
     Route::get('{id}', 'show');
+    Route::post('filter', 'getFilterValues');
 });
 
 Route::prefix('comments')->middleware('api')->controller(CommentController::class)->group(function(){
@@ -80,13 +87,14 @@ Route::prefix('comments')->controller(CommentController::class)->group(function(
 
 Route::prefix('attachments')->middleware('api')->controller(AttachmentController::class)->group(function(){
     Route::post('', 'store');
-    Route::delete('{attachment}', 'destroy');
+    Route::delete('{id}', 'destroy');
     Route::post('updatebyid/{id}', 'updateById');
 });
 Route::prefix('attachments')->controller(AttachmentController::class)->group(function(){
     Route::get('', 'index');
     Route::get('{id}', 'show');
     Route::get('getbypostid/{postid}', 'getbypostid');
+    Route::post('moveBucket/{id}', 'moveBucket');
 });
 
 //Route::resource('tags', TagController::class);

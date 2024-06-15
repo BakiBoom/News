@@ -1,0 +1,102 @@
+.body-color{
+    /* background: #A0AECD !important; */
+    background-color: #FFF;
+}
+
+.section-custom{
+    background: #f0f0f0;
+    /* box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5); */
+}
+
+.card-custom {
+    background: #f0f0f0;
+}
+
+.btn-custom {
+    background: #f0f0f0 !important;
+    color: gray;
+}
+
+.btn-custom-FFF {
+    background: #FFF !important;
+    color: gray;
+}
+
+
+.card-color-FFF {
+    color: #FFF;
+    box-shadow: inset 0px -100px 100px 10px rgba(0, 0, 0, 1) !important;
+}
+
+.w-49 {
+    width: 49% !important;
+}
+
+.w-33 {
+    width: 33% !important;
+}
+
+.w-32 {
+    width: 32% !important;
+}
+
+.w-35{
+    width: 35% !important;
+}
+
+.w-65 {
+    width: 65% !important;
+}
+
+.card {
+    border: none !important;
+}
+
+.little-text-post {
+    font-size: 16px !important;
+    color: gray;
+}
+
+.main-text-post {
+    font-size: 20px !important;
+}
+
+.carusel-height {
+    height: 350px !important;
+}
+
+.container{
+    width: 100% !important;
+    max-width: 1200px !important;
+    margin: auto;
+}
+
+.text-hidden{
+    text-overflow: ellipsis !important;
+    overflow: hidden;
+    white-space: nowrap;
+    height: 1.5rem;
+}
+
+.header-punkt {
+    list-style: none;
+}
+
+.bg-white {
+    background-color: #FFF;
+}
+
+.bg-custom {
+    background-color: #f0f0f0 !important;
+}
+
+.tag-table-cp {
+    height: 400px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.description-cp {
+    height: 150px;
+    max-height: 150px;
+}

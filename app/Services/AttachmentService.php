@@ -94,9 +94,18 @@ class AttachmentService {
         }
     }
 
-    public function destroy(Attachment $model): Attachment {
+    public function destroy($id): Attachment {
+        $model = Attachment::find($id);
         $model->delete();
         return $model;
+    }
+
+    public function moveBucket($id): Attachment{
+        $model = Attachment::find($id);
+        $model->isdeleted = true;
+        $model->save();
+        return $model;
+
     }
 
     public function getByPostId($postId) {

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список постов</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="bootstrap-4.6.2-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="body-color">
+    <header class="bg-dark mb-4">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="my-2" style="color: #FFF;">
+                    <h3 class="m-0">Админ панель</h3>
+                </div>
+                <div class="d-flex flex-column align-items-end">
+                    <ul class="d-flex my-2">
+                        <li class="m-2 header-punkt"><a class="btn btn-light">Посты</a></li>
+                        <li class="m-2 header-punkt"><a class="btn btn-light">Категории</a></li>
+                        <li class="my-2 ml-2 mr-1 header-punkt"><a class="btn btn-light">Теги</a></li>
+                        <li class="my-2 ml-2 mr-1 header-punkt"><a class="btn btn-primary">Выход</a></li>
+                    </ul>
+                    <ul class="d-flex mb-2">
+                        <li class="mx-1 header-punkt"><a class="btn btn-sm btn-outline-info">Создать пост</a></li>
+                        <li class="mx-1 header-punkt"><a class="btn btn-sm btn-outline-info">Создать категорию</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="mb-4 section-custom">
+        <div class="container">
+            <div class="py-3">
+                <div class="d-flex justify-content-between">
+                    <h4 class="mb-4">Список категорий</h4>
+                    <div>
+                        <button class="btn btn btn-info">Создать категорию</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="py-3">
+                <table class="table table-striped">
+                    <thead>
+                      <tr class="text-center">
+                        <th scope="col">#</th>
+                        <th scope="col">Действия</th>
+                        <th class="w-33" scope="col">Заголовок</th>
+                        <th scope="col">Дата создания</th>
+                        <th scope="col">Состояние</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="text-center">
+                            <td class="text-center">
+                                <span><strong>1</strong></span>
+                            </td>
+                            <td class="text-center">
+                                <div class="dropdown">
+                                    <button type="button" class="btn btn-outline-secondary" data-toggle="dropdown" aria-expanded="false">
+                                        <span><i class="fa fa-bars" aria-hidden="true"></i></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Редактировать</a></li>
+                                        <li><a class="dropdown-item" href="#">В корзину</a></li>
+                                        <li><a class="dropdown-item" href="#">Удалить</a></li>
+                                    </ul>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                Категория 1
+                            </td>
+                            <td class="text-center">
+                                12.06.2024
+                            </td>
+                            <td class="text-center">
+                                <div class="d-flex flex-column">
+                                    <span class="badge badge-pill badge-success mb-1">Опубликовано</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="text-center">
+                            <td class="text-center">
+                                <span><strong>2</strong></span>
+                            </td>
+                            <td class="text-center">
+                                <div class="dropdown">
+                                    <button type="button" class="btn btn-outline-secondary" data-toggle="dropdown" aria-expanded="false">
+                                        <span><i class="fa fa-bars" aria-hidden="true"></i></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Редактировать</a></li>
+                                        <li><a class="dropdown-item" href="#">В корзину</a></li>
+                                        <li><a class="dropdown-item" href="#">Удалить</a></li>
+                                    </ul>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                Категория 2
+                            </td>
+                            <td class="text-center">
+                                12.06.2024
+                            </td>
+                            <td class="text-center">
+                                <div class="d-flex flex-column">
+                                    <span class="badge badge-pill badge-warning mb-1">Не опубликовано</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="text-center">
+                            <td class="text-center">
+                                <span><strong>3</strong></span>
+                            </td>
+                            <td class="text-center">
+                                <div class="dropdown">
+                                    <button type="button" class="btn btn-outline-secondary" data-toggle="dropdown" aria-expanded="false">
+                                        <span><i class="fa fa-bars" aria-hidden="true"></i></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Редактировать</a></li>
+                                        <li><a class="dropdown-item" href="#">В корзину</a></li>
+                                        <li><a class="dropdown-item" href="#">Удалить</a></li>
+                                    </ul>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                Категория 3
+                            </td>
+                            <td class="text-center">
+                                12.06.2024
+                            </td>
+                            <td class="text-center">
+                                <div class="d-flex flex-column">
+                                    <span class="badge badge-pill badge-danger mb-1">В корзине</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+    </section>
+    <script src="jQuery/jquery-3.7.1.min.js"></script>
+    <script src="bootstrap-4.6.2-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="bootstrap-4.6.2-dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>

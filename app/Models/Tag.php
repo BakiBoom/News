@@ -18,6 +18,7 @@ class Tag extends Model
         'ispublish',
         'isdeleted',
         'publishdate',
+        'categoryid',
         'created_at',
         'updated_at',
         'deleted_at'

@@ -21,10 +21,6 @@ class CategoryController extends BaseController
 
     public function store(Request $request)
     {
-        if (!$this->middleware('auth:api')->passes()) {
-            return $this->sendError('Unauthorized', [], 401);
-        }
-
         $input = $request->all();
         $result = $this->categoryService->store($input);
         if (is_string($result)) {
@@ -44,10 +40,6 @@ class CategoryController extends BaseController
 
     public function update(Request $request, Category $category)
     {
-        if (!$this->middleware('auth:api')->passes()) {
-            return $this->sendError('Unauthorized', [], 401);
-        }
-
         $input = $request->all();
         $result = $this->categoryService->update($input, $category);
         return $this->sendResponse($result->toArray(), 'Category updated successfully.');
@@ -55,31 +47,25 @@ class CategoryController extends BaseController
 
     public function updateById(Request $request, $id)
     {
-        if (!$this->middleware('auth:api')->passes()) {
-            return $this->sendError('Unauthorized', [], 401);
-        }
-
         $input = $request->all();
         $result = $this->categoryService->updateById($input, $id);
         return $this->sendResponse($result->toArray(), 'Category updated successfully.');
     }
 
     public function moveBucket($id) {
-        if (!$this->middleware('auth:api')->passes()) {
-            return $this->sendError('Unauthorized', [], 401);
-        }
-
         $result = $this->categoryService->moveBucket($id);
         return $this->sendResponse($result->toArray(), 'Category move bucket successfully.');
     }
 
-    public function destroy(Category $category)
+    public function destroy($id)
     {
-        if (!$this->middleware('auth:api')->passes()) {
-            return $this->sendError('Unauthorized', [], 401);
-        }
-        
-        $result = $this->categoryService->destroy($category);
+        $result = $this->categoryService->destroy($id);
         return $this->sendResponse($result->toArray(), 'Category deleted successfully.');
+    }
+
+    public function getFilterValues(Request $request){
+        $input = $request->all();
+        $result = $this->categoryService->getFilterValues($request);
+        return $this->sendResponse($result, 'Category filter successfully.');
     }
 }
