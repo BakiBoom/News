@@ -72,7 +72,7 @@ class PostController extends BaseController
 
     public function getFilterValues(Request $request){
         $input = $request->all();
-        $result = $this->postService->getFilterValues($request);
-        return $this->sendResponse($result->serializeFilter(), 'Post filter successfully.');
+        $result = $this->postService->getFilterValues($input);
+        return $this->sendResponse($result, 'Post filter successfully.');
     }
 }

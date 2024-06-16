@@ -16,7 +16,7 @@ class Category extends Model
         'title',
         'description',
         'ispublish',
-        'isdeletd',
+        'isdeleted',
         'publishdate',
         'created_at',
         'updated_at',

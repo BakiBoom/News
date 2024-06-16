@@ -9,13 +9,8 @@ use Illuminate\Support\Carbon;
 
 class PostService {
 
-    public function index(TagFilter $request) {
-        $posts = Post::filter($request);
-        if (isset($posts)){
-            return $posts;
-        } else {
-            return $post = Post::all();
-        }
+    public function index() {
+        return $posts = Post::all();
     }
 
     public function store($input): Post | string
@@ -102,13 +97,28 @@ class PostService {
     }
 
     public function getFilterValues($input){
-        $filter = new PostFilter();
-        $filter->title = $input['title'];
-        $filter->categorysid = $input['categorysid'];
-        $filter->tagsid = $input['tagsid'];
-        $filter->isdeleted = $input['isdeleted'];
-        $filter->created_at = $input['created_at'];
-        $filter->deleted_at = $input['deleted_at'];
-        return $filter;
+        $title = array_key_exists('title', $input) == false ? null : $input['title'];
+        $tagsid = array_key_exists('tagsid', $input) == false ? null : $input['tagsid'];
+        $categorysid =  array_key_exists('categorysid', $input) == false ? null :  $input['categorysid'];
+        $isdeleted = array_key_exists('isdeleted', $input) == false ? null : $input['isdeleted'];
+        $startdate = array_key_exists('startdate', $input) == false ? null : $input['startdate'];
+        $enddate = array_key_exists('enddate', $input) == false ? null : $input['enddate'];
+        $filter = new PostFilter($title, $categorysid, $tagsid, $isdeleted, $startdate, $enddate);
+        $posts = Post::whereNotNull('categoryid')
+            ->where('categoryid', $filter->categorysid)
+            ->whereNotNull('tagid')
+            ->where('tagid', $filter->tagsid)
+            ->whereNotNull('isdeleted')
+            ->where('isdeleted', $filter->isdeleted)
+            ->whereNotNull('publishdate')
+            ->where('publishdate', '>', $filter->startdate)
+            ->whereNotNull('publishdate')
+            ->where('publishdate', '<', $filter->enddate)
+            ->where(function($query) use ($filter) {
+                $query->whereNull('title')
+                    ->orWhere('title', 'LIKE', '%' . $filter->title . '%');
+            })
+            ->get();
+        return $posts;
     }
 }
